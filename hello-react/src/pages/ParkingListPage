@@ -1,0 +1,39 @@
+import {useQuery} from "@tanstack/react-query"
+import React from 'react'
+import {fetchParkings} from '../api'
+
+
+
+
+const ParkingListPage = () =>{
+    
+
+const query = useQuery({
+    queryKey: ["fetchParkings"],
+    queryFn: fetchParkings
+});
+
+if (isLoading){
+    return <p>Loading...</p>
+}
+if(isError){
+    return <p>Error occured</p>
+}
+else{
+
+    return <div>
+    {
+    <div>
+       data.data.results.map(p=> <div key = {p.id}>
+        <p>{p.name}</p>
+        </div>)
+    </div>
+    }
+    </div>
+}
+
+
+
+}; 
+
+export default ParkingListPage;
